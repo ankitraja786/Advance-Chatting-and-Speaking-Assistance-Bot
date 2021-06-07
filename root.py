@@ -2,10 +2,12 @@ from tkinter import *
 
 def reply():
 	question = message_window.get()
-	chat_window.insert(END, 'You : ' + question + '\n')
+	chat_window.insert(END, "You : "+ question + '\n')
 	message_window.delete(0, END)
 
-
+def Quit():
+	global root
+	root.quit()
 
 root = Tk() 	# Object of TK class
 root.configure(bg = 'green')
@@ -13,15 +15,8 @@ root.title('Advance Chat Bot Application')
 root.geometry('400x550') 	# size of window
 
 main_menu = Menu(root) 		# Main Menu
-file_menu = Menu(root)		# Sub Menu in File
 
-file_menu.add_command(label = 'New')
-file_menu.add_command(label = 'Save As')
-file_menu.add_command(label = 'Exit')
-
-main_menu.add_cascade(label = 'File', menu = file_menu)
-main_menu.add_command(label = 'Edit')
-main_menu.add_command(label = 'Quit')
+main_menu.add_command(label = 'Quit', command = Quit)
 root.config(menu = main_menu)
 
 chat_window = Text(root, bd = 1, bg = 'black', fg = 'white',font = ('times new roman', 20),
@@ -32,7 +27,7 @@ message_window = Entry(root, font = ('verdana', 20,'bold'), bg = 'purple', fg = 
 message_window.place(x = 10, y = 405, height = 50, width = 380)
 
 src = PhotoImage(file = 'image.png')
-button = Button(root, image = src ,
+button = Button(root, image = src,
 				   width = 12, height = 5, font = ('Arial', 20), fg = 'white', command = reply)
 button.place(x = 150, y = 470, height = 70, width = 90)
 
